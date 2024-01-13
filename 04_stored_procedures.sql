@@ -10,7 +10,8 @@ begin
   SELECT sum(amount)
   INTO   totalspent
   FROM   transaction
-  WHERE  buyer_id = userid;END;//
+  WHERE  buyer_id = userid;
+END;//
 delimiter ;
 
 
@@ -35,18 +36,10 @@ begin
                           productid,
                           quantity,
                           now()
-              );END;//
-delimiter ; DELIMITER //
-CREATE PROCEDURE
-  calculatetotalspentbyuser(IN userid      INT,
-                            OUT totalspent DECIMAL(10, 2))
-begin
-  SELECT sum(amount)
-  INTO   totalspent
-  FROM   transaction
-  WHERE  buyer_id = userid;END;//
-delimiter ;
+              );
+END;//
 
+delimiter ; 
 
 -- 3. Procedimiento para marcar una notificación como leída
 -- Este procedimiento permite a un usuario marcar una notificación como leída. Toma como entrada el ID de la notificación y el ID del usuario. Luego, actualiza el estado de la notificación a "leída" en la tabla notification.
