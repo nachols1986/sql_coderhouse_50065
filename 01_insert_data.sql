@@ -166,7 +166,7 @@ VALUES      (1,102.0,'2023-01-25 12:30:00'),
 
 -- Inserción de datos en la tabla Notification
 INSERT INTO notification
-            (user_id,message,READ,created_at)
+            (user_id,message,read_,created_at)
 VALUES      (1,'¡Nuevo producto en oferta!',0,'2023-01-16 08:45:00'),
             (2,'Tienes una nueva revisión en tu producto',0,
              '2023-02-11 11:30:00'),
