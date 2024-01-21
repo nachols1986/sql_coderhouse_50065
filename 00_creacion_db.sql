@@ -1,3 +1,4 @@
+-- Creación de tablas
 -- Crear la base de datos del marketplace
 CREATE DATABASE IF NOT EXISTS marketplace_db;
 
@@ -36,9 +37,9 @@ CREATE TABLE IF NOT EXISTS transaction
      product_id INT,
      amount     DECIMAL(10, 2) NOT NULL,
      created_at DATETIME,
-     FOREIGN KEY (buyer_id) REFERENCES user(id),
-     FOREIGN KEY (seller_id) REFERENCES user(id),
-     FOREIGN KEY (product_id) REFERENCES product(id)
+     FOREIGN KEY (buyer_id) REFERENCES user(id) ON DELETE CASCADE,
+     FOREIGN KEY (seller_id) REFERENCES user(id) ON DELETE CASCADE,
+     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
   );
 
 -- Tabla de Reseñas
@@ -50,8 +51,8 @@ CREATE TABLE IF NOT EXISTS review
      rating     INT NOT NULL,
      comment    VARCHAR(255),
      created_at DATETIME,
-     FOREIGN KEY (user_id) REFERENCES user(id),
-     FOREIGN KEY (product_id) REFERENCES product(id)
+     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
   );
 
 -- Tabla de Categorías
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS productcategory
   (
      product_id  INT,
      category_id INT,
-     FOREIGN KEY (product_id) REFERENCES product(id),
+     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
      FOREIGN KEY (category_id) REFERENCES category(id)
   );
 
@@ -79,7 +80,7 @@ CREATE TABLE IF NOT EXISTS address
      city        VARCHAR(50),
      state       VARCHAR(50),
      postal_code VARCHAR(20),
-     FOREIGN KEY (user_id) REFERENCES user(id)
+     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
   );
 
 -- Tabla de Carritos de Compras
@@ -90,8 +91,8 @@ CREATE TABLE IF NOT EXISTS shoppingcart
      product_id INT,
      quantity   INT NOT NULL,
      created_at DATETIME,
-     FOREIGN KEY (user_id) REFERENCES user(id),
-     FOREIGN KEY (product_id) REFERENCES product(id)
+     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
   );
 
 -- Tabla de Pagos
@@ -101,7 +102,7 @@ CREATE TABLE IF NOT EXISTS payment
      user_id      INT,
      amount       DECIMAL(10, 2) NOT NULL,
      payment_date DATETIME,
-     FOREIGN KEY (user_id) REFERENCES user(id)
+     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
   );
 
 -- Tabla de Notificaciones
@@ -110,7 +111,7 @@ CREATE TABLE IF NOT EXISTS notification
      id         INT auto_increment PRIMARY KEY,
      user_id    INT,
      message    VARCHAR(255),
-     read_       BOOLEAN DEFAULT false,
+     read_      BOOLEAN DEFAULT false,
      created_at DATETIME,
-     FOREIGN KEY (user_id) REFERENCES user(id)
+     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
   ); 
