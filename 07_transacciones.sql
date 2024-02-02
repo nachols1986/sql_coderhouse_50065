@@ -2,6 +2,7 @@
 START transaction;
 
 -- Eliminar algunos registros en la tabla 'product' (o reemplazar por inserción si está vacía)
+DELETE FROM product WHERE id = 2;
 
 -- Comentar la sentencia Rollback (no ejecutar)
 -- ROLLBACK;
